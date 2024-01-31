@@ -1,19 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
+using SalesWebMvc.services;
 
 namespace SalesWebMvc.Controllers
 {
     public class SellersController : Controller
     {
-        private readonly ILogger<SellersController> _logger;
+        private readonly SellerServices _sellerServices;
 
-        public SellersController(ILogger<SellersController> logger)
+        public SellersController(SellerServices sellerServices)
         {
-            _logger = logger;
+            _sellerServices = sellerServices;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return View(_sellerServices.FindAll());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

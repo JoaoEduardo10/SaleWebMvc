@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SalesWebMvc.Data;
+using SalesWebMvc.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<SeedingServices>();
+builder.Services.AddScoped<SellerServices>();
 
 var connectionString = builder.Configuration.GetConnectionString("SalesWebMvcAppConext");
 
