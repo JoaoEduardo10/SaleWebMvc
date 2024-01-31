@@ -9,7 +9,7 @@ namespace SalesWebMvc.Data
         public SalesWebMvcContext(DbContextOptions<SalesWebMvcContext> options) : base(options)
         { }
 
-        DbSet<Department> Department { get; set; }
+        public DbSet<Department> Department { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
