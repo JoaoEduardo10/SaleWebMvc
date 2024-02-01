@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<SeedingServices>();
 builder.Services.AddScoped<SellerServices>();
+builder.Services.AddScoped<DepartmentsServices>();
 
 var connectionString = builder.Configuration.GetConnectionString("SalesWebMvcAppConext");
 
@@ -28,7 +29,6 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingServices>().Seed();
-app.Services.CreateScope().ServiceProvider.GetRequiredService<SellerServices>();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
