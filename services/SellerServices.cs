@@ -26,7 +26,7 @@ namespace SalesWebMvc.services
             _context.SaveChanges();
         }
 
-        public Seller FindById(int id)
+        public Seller? FindById(int id)
         {
             return _context.Seller.Include(seller => seller.Department).FirstOrDefault(seller => seller.Id == id);
         }
@@ -34,8 +34,13 @@ namespace SalesWebMvc.services
         public void Remove(int id)
         {
             var seller = FindById(id);
-            _context.Seller.Remove(seller);
-            _context.SaveChanges();
+
+            if (seller != null)
+            {
+                _context.Seller.Remove(seller);
+                _context.SaveChanges();
+            }
+
         }
     }
 }
