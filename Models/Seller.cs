@@ -5,18 +5,27 @@ namespace SalesWebMvc.Models
     public class Seller
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} 'e obrigatório")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} tamanho maximo é {2} e o minimo é {1}")]
         public string Name { get; set; }
         [DataType(DataType.EmailAddress)]
+
+        [Required(ErrorMessage = "{0} 'e obrigatório")]
+        [EmailAddress(ErrorMessage = "{0} esta em um formato invalido")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "{0} 'e obrigatório")]
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
 
+        [Required(ErrorMessage = "{0}'e obrigatório")]
         [Display(Name = "Base Salary")]
         [DisplayFormat(DataFormatString = "{0:F2}")]
         public double BaseSalary { get; set; }
 
+        [Required(ErrorMessage = "{0} 'e obrigatório")]
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
