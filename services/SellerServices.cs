@@ -36,10 +36,18 @@ namespace SalesWebMvc.services
         {
             var seller = await FindByIdAsync(id);
 
-            if (seller != null)
+            try
             {
+                if (seller == null)
+                {
+                    throw new NotFoundException("Usuário não encontrado");
+                }
                 _context.Seller.Remove(seller);
                 await _context.SaveChangesAsync();
+            }
+            catch (DbConcurrencyException error)
+            {
+                throw new IntegrityException(error.Message);
             }
 
         }
