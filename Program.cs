@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<SeedingServices>();
 builder.Services.AddScoped<SellerServices>();
 builder.Services.AddScoped<DepartmentsServices>();
+builder.Services.AddScoped<SalesRecordServices>();
 
 var connectionString = builder.Configuration.GetConnectionString("SalesWebMvcAppConext");
 
